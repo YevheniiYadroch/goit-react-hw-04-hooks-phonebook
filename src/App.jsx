@@ -14,6 +14,14 @@ function App () {
   ]);
   const [filter, setFilter] = useState('')
   
+  useEffect(() => {
+    localStorage.setItem('contacts', JSON.stringify(contacts))
+  }, [contacts])
+
+
+  useEffect(() => {
+      setContacts(JSON.parse(localStorage.getItem('contacts')))
+  }, [])
 
   const formChangeHandle = e => {
     e.preventDefault();
@@ -33,15 +41,6 @@ function App () {
   const onDelete = e => {
     setContacts(prevValue => [...prevValue.filter(item => item.id !== e.target.dataset.id)])
   }
-
-  useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts))
-  }, [contacts])
-
-
-  useEffect(() => {
-      setContacts(JSON.parse(localStorage.getItem('contacts')))
-  }, [])
 
   return (
       <div className="App">
