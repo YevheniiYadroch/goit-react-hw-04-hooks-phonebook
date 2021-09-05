@@ -15,13 +15,12 @@ function App () {
   const [filter, setFilter] = useState('')
   
   useEffect(() => {
-    localStorage.setItem('contacts', JSON.stringify(contacts))
-  }, [contacts])
-
+    setContacts(JSON.parse(localStorage.getItem('contacts')))
+  }, [])
 
   useEffect(() => {
-      setContacts(JSON.parse(localStorage.getItem('contacts')))
-  }, [])
+      localStorage.setItem('contacts', JSON.stringify(contacts))
+  }, [contacts])
 
   const formChangeHandle = e => {
     e.preventDefault();
